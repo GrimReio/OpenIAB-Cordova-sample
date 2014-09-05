@@ -1,0 +1,1 @@
+call cordova run android
