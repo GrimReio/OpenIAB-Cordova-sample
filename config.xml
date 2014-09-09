@@ -6,4 +6,5 @@
     </description>
     <content src="index.html" />
     <access origin="*" />
+    <preference name="loglevel" value="VERBOSE"/>
 </widget>

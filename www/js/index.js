@@ -17,6 +17,8 @@
  * under the License.
  */
 var app = {
+    sku:"SKU",
+
     initSuccess: function()
     {
         console.log("Init.SUCCESS");
@@ -25,8 +27,29 @@ var app = {
         purchaseButton.disabled = false;
 
         var consumeButton = document.getElementById('btn_consume');
-        consumeButton.disabled = false;
+        consumeButton.disabled = false;       
     },
+    initFail: function(error)
+    {
+        console.log("Init.FAIL: " + error);
+    },
+    purchaseSuccess: function()
+    {
+        console.log("Purchase.SUCCESS: " + error);
+    },
+    purchaseFail: function(error)
+    {
+        console.log("Purchase.FAIL: " + error);
+    },
+    consumeSuccess: function()
+    {
+        console.log("Consume.SUCCESS: " + error);
+    },
+    consumeFail: function(error)
+    {
+        console.log("Consume.FAIL: " + error);
+    },
+
 
     // Application Constructor
     initialize: function() 
@@ -50,14 +73,14 @@ var app = {
         app.receivedEvent('deviceready');
 
 		var initButton = document.getElementById('btn_init');
-        initButton.disabled = false;
+        var purchaseButton = document.getElementById('btn_purchase');
+        var consumeButton = document.getElementById('btn_consume');
 
-        initButton.onclick = function()
-        {
-            openiab.init(
-                app.initSuccess,
-                function(error) { console.log("Init.FAIL: " + error); });    
-        }		
+        initButton.onclick = function() { openiab.init(app.initSuccess, app.initFail, [ this.sku, "product", "sub" ]); }
+        purchaseButton.onclick = function() { openiab.purchaseProduct(app.purchaseSuccess, app.purchaseFail, this.sku); }
+        consumeButton.onclick = function() { openiab.consume(this.sku, app.consumeSuccess, app.consumeFail, this.sku); }
+
+        initButton.disabled = false;
     },
     // Update DOM on a Received Event
     receivedEvent: function(id) 
