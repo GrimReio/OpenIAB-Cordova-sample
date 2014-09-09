@@ -1,6 +1,0 @@
-# view AndroidManifest.xml #generated:11
--keep class com.amazon.inapp.purchasing.ResponseReceiver { <init>(...); }
-
-# view AndroidManifest.xml #generated:5
--keep class org.onepf.openiab.cordova.sample.CordovaSample { <init>(...); }
-
