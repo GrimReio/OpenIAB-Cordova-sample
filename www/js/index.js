@@ -77,10 +77,12 @@ var app = {
 		var initButton = document.getElementById('btn_init');
         var purchaseButton = document.getElementById('btn_purchase');
         var consumeButton = document.getElementById('btn_consume');
+        var testButton = document.getElementById('btn_test');
 
-        initButton.onclick = function() { openiab.init(app.initSuccess, app.initFail, [ this.SKU_PRODUCT, this.SKU_CONS, this.SKU_SUB ]); }
-        purchaseButton.onclick = function() { openiab.purchaseProduct(app.purchaseSuccess, app.purchaseFail, this.SKU_CONS); }
-        consumeButton.onclick = function() { openiab.consume(this.sku, app.consumeSuccess, app.consumeFail, this.SKU_CONS); }
+        initButton.onclick = function() { openiab.init(app.initSuccess, app.initFail, [ app.SKU_PRODUCT, app.SKU_CONS, app.SKU_SUB ]); }
+        purchaseButton.onclick = function() { openiab.purchaseProduct(app.purchaseSuccess, app.purchaseFail, app.SKU_CONS); }
+        consumeButton.onclick = function() { openiab.consume(this.sku, app.consumeSuccess, app.consumeFail, app.SKU_CONS); }
+        testButton.onclick = function() { openiab.purchaseProduct(app.purchaseSuccess, app.purchaseFail, "android.test.purchased"); }
 
         initButton.disabled = false;
     },
