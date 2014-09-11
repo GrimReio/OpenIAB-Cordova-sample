@@ -21,6 +21,14 @@ var app = {
     SKU_CONS:"sku_cons",
     SKU_SUB:"sku_sub",
 
+    getSkuDetailsSuccess: function(skuDetails)
+    {
+        console.log("GetSkuDetails.SUCCESS: " + JSON.stringify(skuDetails));
+    },
+    getSkuDetailsFail: function(error)
+    {
+        console.log("GetSkuDetails.FAIL: " + error.message);
+    },
     initSuccess: function()
     {
         console.log("Init.SUCCESS");
@@ -30,28 +38,32 @@ var app = {
 
         var consumeButton = document.getElementById('btn_consume');
         consumeButton.disabled = false;       
+
+        // For debug purposes
+        openiab.getSkuDetails(app.getSkuDetailsSuccess, app.getSkuDetailsFail, app.SKU_PRODUCT);
+        openiab.getSkuDetails(app.getSkuDetailsSuccess, app.getSkuDetailsFail, app.SKU_CONS);
+        openiab.getSkuDetails(app.getSkuDetailsSuccess, app.getSkuDetailsFail, app.SKU_SUB);
     },
     initFail: function(error)
     {
         console.log("Init.FAIL: " + error.message);
     },
-    purchaseSuccess: function()
+    purchaseSuccess: function(purchase)
     {
-        console.log("Purchase.SUCCESS");
+        console.log("Purchase.SUCCESS: " + JSON.stringify(purchase));
     },
     purchaseFail: function(error)
     {
         console.log("Purchase.FAIL: " + error.message);
     },
-    consumeSuccess: function()
+    consumeSuccess: function(purchase)
     {
-        console.log("Consume.SUCCESS");
+        console.log("Consume.SUCCESS: " + JSON.stringify(purchase));
     },
     consumeFail: function(error)
     {
         console.log("Consume.FAIL: " + error.message);
     },
-
 
     // Application Constructor
     initialize: function() 
@@ -77,12 +89,14 @@ var app = {
 		var initButton = document.getElementById('btn_init');
         var purchaseButton = document.getElementById('btn_purchase');
         var consumeButton = document.getElementById('btn_consume');
-        var testButton = document.getElementById('btn_test');
+        var testPurchaseButton = document.getElementById('btn_test_purchase');
+        var testConsumeButton = document.getElementById('btn_test_consume');
 
         initButton.onclick = function() { openiab.init(app.initSuccess, app.initFail, [ app.SKU_PRODUCT, app.SKU_CONS, app.SKU_SUB ]); }
         purchaseButton.onclick = function() { openiab.purchaseProduct(app.purchaseSuccess, app.purchaseFail, app.SKU_CONS); }
         consumeButton.onclick = function() { openiab.consume(app.consumeSuccess, app.consumeFail, app.SKU_CONS); }
-        testButton.onclick = function() { openiab.purchaseProduct(app.purchaseSuccess, app.purchaseFail, "android.test.purchased"); }
+        testPurchaseButton.onclick = function() { openiab.purchaseProduct(app.purchaseSuccess, app.purchaseFail, "android.test.purchased"); }
+        testConsumeButton.onclick = function() { openiab.consume(app.consumeSuccess, app.consumeFail, "android.test.purchased"); }
 
         initButton.disabled = false;
     },
