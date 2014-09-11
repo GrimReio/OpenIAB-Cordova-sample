@@ -81,7 +81,7 @@ var app = {
 
         initButton.onclick = function() { openiab.init(app.initSuccess, app.initFail, [ app.SKU_PRODUCT, app.SKU_CONS, app.SKU_SUB ]); }
         purchaseButton.onclick = function() { openiab.purchaseProduct(app.purchaseSuccess, app.purchaseFail, app.SKU_CONS); }
-        consumeButton.onclick = function() { openiab.consume(this.sku, app.consumeSuccess, app.consumeFail, app.SKU_CONS); }
+        consumeButton.onclick = function() { openiab.consume(app.consumeSuccess, app.consumeFail, app.SKU_CONS); }
         testButton.onclick = function() { openiab.purchaseProduct(app.purchaseSuccess, app.purchaseFail, "android.test.purchased"); }
 
         initButton.disabled = false;
