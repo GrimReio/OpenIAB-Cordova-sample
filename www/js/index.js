@@ -17,10 +17,18 @@
  * under the License.
  */
 var app = {
-    SKU_PRODUCT:"sku_product",
-    SKU_CONS:"sku_cons",
-    SKU_SUB:"sku_sub",
+    SKU_PRODUCT:"sku_product_common",
+    SKU_CONS:"sku_cons_common",
+    SKU_SUB:"sku_sub_common",
 
+    mapSkuSuccess: function()
+    {
+        console.log("MapSku.SUCCESS");
+    },
+    mapSkuFail: function(error)
+    {
+        console.log("MapSku.FAIL: " + error.message);
+    },
     getSkuDetailsSuccess: function(skuDetails)
     {
         console.log("GetSkuDetails.SUCCESS: " + JSON.stringify(skuDetails));
@@ -98,6 +106,15 @@ var app = {
         testPurchaseButton.onclick = function() { openiab.purchaseProduct(app.purchaseSuccess, app.purchaseFail, "android.test.purchased"); }
         testConsumeButton.onclick = function() { openiab.consume(app.consumeSuccess, app.consumeFail, "android.test.purchased"); }
 
+        // Map all SKUs
+        openiab.mapSku(app.mapSkuSuccess, app.mapSkuFail, app.SKU_PRODUCT, openiab.STORE_NAME.GOOGLE, "sku_product");
+        openiab.mapSku(app.mapSkuSuccess, app.mapSkuFail, app.SKU_CONS, openiab.STORE_NAME.GOOGLE, "sku_cons");
+        openiab.mapSku(app.mapSkuSuccess, app.mapSkuFail, app.SKU_SUB, openiab.STORE_NAME.GOOGLE, "sku_sub");
+
+        // Set desired options
+        openiab.options.availableStores = [ [openiab.STORE_NAME.GOOGLE, 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkxePPiDjF2+Ejs9zZUjp+CFJWt/Ia7ubLy/HtJ4JX6RSrdRN9c9tr2UzzQSG2CkHwhDdovxHY4xD2F71B6Buuhb4/qAfqVx3h96n9VyNivFx45xiDzBX22Zlhz6c/QOCsEh0cvKGGhTmK0zFhvFj7eKqDT+eavKFDyuBboR8k+sPgtDthbcCpZNDu0jVIH032+cdX0IBN+LstNl6+AUA7JKY58hvcOWUYV/Yk4+oddYuhvvnnXIwAIWtuacCc3oFyR4+slCQ4WmSw3Xu7ag93NlRmbofV0+mHZ4lqsqf6xJqxfpw5y8Jcm8cBt9+LESMeur+ZdSnNR54stA/6rXuwwIDAQAB'] ];
+
+        // Enable init
         initButton.disabled = false;
     },
     // Update DOM on a Received Event
