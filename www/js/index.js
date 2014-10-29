@@ -112,8 +112,10 @@ var app = {
         openiab.mapSku(app.mapSkuSuccess, app.mapSkuFail, app.SKU_SUB, openiab.STORE_NAME.GOOGLE, "sku_sub");
 
         // Set desired options
-        openiab.options.availableStores = [ [openiab.STORE_NAME.GOOGLE, 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkxePPiDjF2+Ejs9zZUjp+CFJWt/Ia7ubLy/HtJ4JX6RSrdRN9c9tr2UzzQSG2CkHwhDdovxHY4xD2F71B6Buuhb4/qAfqVx3h96n9VyNivFx45xiDzBX22Zlhz6c/QOCsEh0cvKGGhTmK0zFhvFj7eKqDT+eavKFDyuBboR8k+sPgtDthbcCpZNDu0jVIH032+cdX0IBN+LstNl6+AUA7JKY58hvcOWUYV/Yk4+oddYuhvvnnXIwAIWtuacCc3oFyR4+slCQ4WmSw3Xu7ag93NlRmbofV0+mHZ4lqsqf6xJqxfpw5y8Jcm8cBt9+LESMeur+ZdSnNR54stA/6rXuwwIDAQAB'] ];
-
+        openiab.options.storeKeys = [ [openiab.STORE_NAME.GOOGLE, 'MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAkxePPiDjF2+Ejs9zZUjp+CFJWt/Ia7ubLy/HtJ4JX6RSrdRN9c9tr2UzzQSG2CkHwhDdovxHY4xD2F71B6Buuhb4/qAfqVx3h96n9VyNivFx45xiDzBX22Zlhz6c/QOCsEh0cvKGGhTmK0zFhvFj7eKqDT+eavKFDyuBboR8k+sPgtDthbcCpZNDu0jVIH032+cdX0IBN+LstNl6+AUA7JKY58hvcOWUYV/Yk4+oddYuhvvnnXIwAIWtuacCc3oFyR4+slCQ4WmSw3Xu7ag93NlRmbofV0+mHZ4lqsqf6xJqxfpw5y8Jcm8cBt9+LESMeur+ZdSnNR54stA/6rXuwwIDAQAB'] ];
+        openiab.options.availableStoreNames = [ openiab.STORE_NAME.GOOGLE ];
+        openiab.options.storeSearchStrategy = openiab.STORE_SEARCH_STRATEGY.INSTALLER_THEN_BEST_FIT;
+        
         // Enable init
         initButton.disabled = false;
     },
