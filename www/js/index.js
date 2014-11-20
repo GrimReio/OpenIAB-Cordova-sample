@@ -29,6 +29,14 @@ var app = {
     {
         console.log("MapSku.FAIL: " + error.message);
     },
+    getPurchasesSuccess: function(purchaseList)
+    {
+        console.log("GetPurchases.SUCCESS: " + JSON.stringify(purchaseList));
+    },
+    getPurchasesFail: function(error)
+    {
+        console.log("GetPurchases.FAIL: " + error.message);
+    },    
     getSkuDetailsSuccess: function(skuDetails)
     {
         console.log("GetSkuDetails.SUCCESS: " + JSON.stringify(skuDetails));
@@ -52,7 +60,8 @@ var app = {
         consumeButton.disabled = false;       
 
         // For debug purposes
-        openiab.getSkuListDetails(app.getSkuListDetailsSuccess, app.getSkuDetailsFail, [app.SKU_PRODUCT, app.SKU_CONS, app.SKU_SUB]);
+        openiab.getSkuListDetails(app.getSkuListDetailsSuccess, app.getSkuDetailsFail, [app.SKU_PRODUCT, app.SKU_CONS, app.SKU_SUB]);       
+        openiab.getPurchases(app.getPurchasesSuccess, app.getPurchasesFail);
     },
     initFail: function(error)
     {
